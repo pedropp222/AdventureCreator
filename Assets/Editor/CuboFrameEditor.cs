@@ -154,7 +154,7 @@ public class CuboFrameEditor : Editor
             {
                 MudarTipoHotspot();
             }
-          
+
 
             if (tipoHotspot == TipoHotspot.IR_OUTRO_FRAME)
             {
@@ -235,7 +235,7 @@ public class CuboFrameEditor : Editor
                 hotspotEdit.name = "Hotspot_IR_FRAME_" + ((HotspotMudarFrame)hotspot).destino?.name;
             }
         }
-     
+
     }
 
     enum EstadoAtual

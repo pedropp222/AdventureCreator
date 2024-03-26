@@ -12,11 +12,10 @@ public class MensagemAcao : JogoAcao
 
     public override void Avaliar()
     {
-        
+
         Debug.Log(mensagem);
 
         terminou = true;
         sucesso = true;
     }
 }
-

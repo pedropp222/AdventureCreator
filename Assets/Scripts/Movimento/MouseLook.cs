@@ -27,7 +27,7 @@ public class MouseLook : MonoBehaviour
 
     private void Update()
     {
-        LookRotation();       
+        LookRotation();
     }
 
     public void Init(Transform character, Transform camera)

@@ -51,7 +51,7 @@ public class Hotspot : MonoBehaviour
         GetComponent<Collider>().enabled = ativado;
     }
 
-    protected virtual void ExecutarMouseDown() 
+    protected virtual void ExecutarMouseDown()
     {
         if (!aExecutar && ativado)
         {
@@ -72,7 +72,7 @@ public class Hotspot : MonoBehaviour
         yield return null;
     }
 
-    protected virtual void ExecutarMouseEnter() 
+    protected virtual void ExecutarMouseEnter()
     {
         if (ativado)
         {
@@ -86,7 +86,7 @@ public class Hotspot : MonoBehaviour
             }
         }
     }
-    protected virtual void ExecutarMouseExit() 
+    protected virtual void ExecutarMouseExit()
     {
         if (ativado)
         {
@@ -94,4 +94,3 @@ public class Hotspot : MonoBehaviour
         }
     }
 }
-
