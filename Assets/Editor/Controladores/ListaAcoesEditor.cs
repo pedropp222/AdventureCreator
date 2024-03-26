@@ -43,6 +43,16 @@ class ListaAcoesEditor : Editor
         CriarEditores(listaAcoes);
     }
 
+    public void ResetEditor()
+    {
+        tiposAcoes.Clear();
+        opcoesFrames.Clear();
+        editoresAcoes.Clear();
+
+        //1º da lista e vazio
+        tiposAcoes.Add(null);
+    }
+
     public void ApagarEditor(int i)
     {
         editoresAcoes[i].ResetTarget();

@@ -19,6 +19,8 @@ public class Hotspot : MonoBehaviour
     {
         GetComponent<MeshRenderer>().enabled = false;
         controladorAcoes = GetComponent<ControladorAcoes>();
+
+        GetComponent<Collider>().enabled = ativado;
     }
 
     private void OnMouseDown()
@@ -45,6 +47,8 @@ public class Hotspot : MonoBehaviour
         {
             ExecutarMouseEnter();
         }
+
+        GetComponent<Collider>().enabled = ativado;
     }
 
     protected virtual void ExecutarMouseDown() 

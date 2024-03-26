@@ -114,10 +114,37 @@ public class ControladorAcoesEditor : Editor
 
 
             GUILayout.Space(5f);
+            GUILayout.BeginHorizontal();
             if (GUILayout.Button("Apagar", GUILayout.Width(150f)))
             {
                 ApagarAcao(i);
             }
+            GUILayout.Label(" ");
+            if (GUILayout.Button("▲"))
+            {
+                if (i != 0 && listaAcoes.Count > 1)
+                {
+                    int index = i;
+                    i = listaAcoes.Count - 1;
+                    TrocarAcoes(index, true);
+                    OnDisable();
+                    OnEnable();
+                    return;
+                }
+            }
+            if (GUILayout.Button("▼"))
+            {
+                if (i != listaAcoes.Count-1 && listaAcoes.Count > 1)
+                {
+                    int index = i;
+                    i = listaAcoes.Count - 1;
+                    TrocarAcoes(index, false);
+                    OnDisable();
+                    OnEnable();
+                    return;
+                }
+            }
+            GUILayout.EndHorizontal();
             GUILayout.EndVertical();
         }
 
@@ -166,6 +193,18 @@ public class ControladorAcoesEditor : Editor
         }
     }
 
+    private void TrocarAcoes(int index, bool subir)
+    {
+        if (subir)
+        {
+            Swap(listaAcoes, index, index - 1);
+        }
+        else
+        {
+            Swap(listaAcoes, index, index + 1);
+        }
+    }
+
     public void ApagarAcao(int x)
     {
         listaDesenhador.ApagarEditor(x);
@@ -183,5 +222,11 @@ public class ControladorAcoesEditor : Editor
         listaAcoes.Add(tc);
         listaDesenhador.CriarEditores(listaAcoes);
         este.listaAcoes = listaAcoes;
+    }
+
+    public static IList<T> Swap<T>(IList<T> list, int indexA, int indexB)
+    {
+        (list[indexA], list[indexB]) = (list[indexB], list[indexA]);
+        return list;
     }
 }
