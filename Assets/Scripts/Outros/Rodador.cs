@@ -1,0 +1,11 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Rodador : MonoBehaviour
+{
+    void Update()
+    {
+        transform.Rotate(new Vector3(0f, 15f*Time.deltaTime, 0f));
+    }
+}
