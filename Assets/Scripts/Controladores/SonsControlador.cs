@@ -6,15 +6,31 @@ using UnityEngine;
 
 public class SonsControlador : MonoBehaviour
 {
+    private List<AudioSource> sourcesAtuaisAmbiente = new List<AudioSource>();
     private List<AudioSource> sourcesAtuais = new List<AudioSource>();
-
-    //bool isFading = false;
 
     private List<FadesAtuais> fadesAtuais = new List<FadesAtuais>();
 
+    public void TocarSom(AudioClip som, float volume)
+    {
+        AudioSource source = sourcesAtuais.Find(a => a.clip == som || a.isPlaying == false);
+
+        if (source == null)
+        {
+            source = gameObject.AddComponent<AudioSource>();
+            source.volume = volume;
+            source.loop = false;
+            source.playOnAwake = false;
+            source.clip = som;
+            sourcesAtuais.Add(source);
+        }
+
+        source.Play();
+    }
+
     public void FadeSom(AudioClip som, float duracao, float volume)
     {
-        AudioSource source = sourcesAtuais.Find(a=>a.clip == som);
+        AudioSource source = sourcesAtuaisAmbiente.Find(a=>a.clip == som);
 
         if (source == null)
         {
@@ -22,7 +38,7 @@ public class SonsControlador : MonoBehaviour
             source.volume = 0f;
             source.loop = true;
             source.clip = som;
-            sourcesAtuais.Add(source);
+            sourcesAtuaisAmbiente.Add(source);
         }
 
         if (!source.isPlaying)
@@ -49,7 +65,7 @@ public class SonsControlador : MonoBehaviour
 
     public void DesligarTudo()
     {
-        foreach(AudioSource s in sourcesAtuais)
+        foreach(AudioSource s in sourcesAtuaisAmbiente)
         {
             FadeSom(s.clip, 2f, 0f);
         }
@@ -57,10 +73,7 @@ public class SonsControlador : MonoBehaviour
 
     private IEnumerator FazerFade(AudioSource source, float duracao,float volume)
     {
-        //isFading = true;
-
         float t = 0f;
-
         float originalVolume = source.volume;
 
         while (t < 1f)
@@ -79,7 +92,6 @@ public class SonsControlador : MonoBehaviour
         }
 
         fadesAtuais.Remove(fadesAtuais.Find((x) => x.source == source));
-        //isFading = false;
     }
 }
 
