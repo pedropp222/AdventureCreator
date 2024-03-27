@@ -17,14 +17,14 @@ public class SonsControlador : MonoBehaviour
 
         if (source == null)
         {
-            source = gameObject.AddComponent<AudioSource>();
-            source.volume = volume;
+            source = gameObject.AddComponent<AudioSource>();            
             source.loop = false;
-            source.playOnAwake = false;
-            source.clip = som;
+            source.playOnAwake = false;           
             sourcesAtuais.Add(source);
         }
 
+        source.volume = volume;
+        source.clip = som;
         source.Play();
     }
 
