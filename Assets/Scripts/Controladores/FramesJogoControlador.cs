@@ -22,22 +22,19 @@ public class FramesJogoControlador : MonoBehaviour
             camaraControlador = FindAnyObjectByType<SelecionarCamaraPlataforma>().gameObject;
         }
 
-       // if (AdventureControlador.instancia.GetModoAtual() == AdventureControlador.ModoAtual.JOGO)
-        //{
-            if (listaCubos.Count > 0)
-            {
-                IrPara(listaCubos[0],true);
+        if (listaCubos.Count > 0)
+        {
+            IrPara(listaCubos[0], true);
 
-                for (int i = 1; i < listaCubos.Count; i++)
-                {
-                    listaCubos[i].gameObject.SetActive(false);
-                }
-            }
-            else
+            for (int i = 1; i < listaCubos.Count; i++)
             {
-                Debug.LogWarning("Nao existem frames");
+                listaCubos[i].gameObject.SetActive(false);
             }
-        //}
+        }
+        else
+        {
+            Debug.LogWarning("Nao existem frames");
+        }
     }
 
     public void IrPara(CuboFrame destino, bool instantaneo)
@@ -108,10 +105,7 @@ public class FramesJogoControlador : MonoBehaviour
         }
 
         frameAtual = destino;
-
-        frameAtual.OnEntrouFrame();
-
         aMover = false;
+        frameAtual.OnEntrouFrame();
     }
-
 }

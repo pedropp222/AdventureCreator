@@ -38,6 +38,7 @@ public class AdventureControladorEditor : Editor
         bool existeSonsContr = false;
         bool existeFramesJogoContr = false;
         bool existeCursorContr = false;
+        bool existeGestorVar = false;
 
         foreach (GameObject go in SceneManager.GetActiveScene().GetRootGameObjects())
         {
@@ -53,8 +54,12 @@ public class AdventureControladorEditor : Editor
             {
                 existeCursorContr = true;
             }
+            else if (go.GetComponent<ControladorVariaveis>() != null)
+            {
+                existeGestorVar = true;
+            }
 
-            if (existeSonsContr && existeFramesJogoContr && existeCursorContr)
+            if (existeSonsContr && existeFramesJogoContr && existeCursorContr && existeGestorVar)
             {
                 break;
             }
@@ -74,6 +79,11 @@ public class AdventureControladorEditor : Editor
         {
             GameObject go = new GameObject("CursorControlador");
             este.cursorControlador = go.AddComponent<CursorControlador>();
+        }
+        if (!existeGestorVar)
+        {
+            GameObject go = new GameObject("VariaveisControlador");
+            este.controladorVariaveis = go.AddComponent<ControladorVariaveis>();
         }
 
         este.setupFeito = true;

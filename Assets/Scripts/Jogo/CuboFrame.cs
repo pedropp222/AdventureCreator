@@ -34,6 +34,11 @@ public class CuboFrame : MonoBehaviour
         }
     }
 
+    public Hotspot EncontrarHotspotDestino(CuboFrame destino)
+    {
+        return listaHotspots.Find((x) => x is HotspotMudarFrame l && l.destino == destino);
+    }
+
     public void OnEntrouFrame()
     {
         foreach(ControladorAcoes ctrl in controladorAcoes)

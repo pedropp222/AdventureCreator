@@ -15,6 +15,7 @@ public class AdventureControlador : MonoBehaviour
     public SonsControlador sonsControlador;
     public FramesJogoControlador framesJogoControlador;
     public CursorControlador cursorControlador;
+    public ControladorVariaveis controladorVariaveis;
 
     public static AdventureControlador instancia;
 
