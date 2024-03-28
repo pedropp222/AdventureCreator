@@ -12,12 +12,14 @@ public class AcaoTocarAnimacao : JogoAcao
     public string nomeAnimacao;
 
     public bool esperarQueAnimacaoTermine;
+    public bool loop;
 
     public override void Avaliar()
     {
         if (!esperarQueAnimacaoTermine)
         {
             animacaoComponente.Stop();
+            animacaoComponente.wrapMode = loop ? WrapMode.Loop : WrapMode.Once;
             animacaoComponente.Play(nomeAnimacao);
             sucesso = true;
             terminou = true;

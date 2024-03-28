@@ -12,6 +12,7 @@ public class TocarAnimacaoAcaoEditor : Editor
     SerializedProperty animacaoComponente;
     SerializedProperty nomeAnimacao;
     SerializedProperty esperarQueAnimacaoTermine;
+    SerializedProperty loop;
 
     List<string> listaAnimacao;
     int animacaoIndex;
@@ -21,6 +22,7 @@ public class TocarAnimacaoAcaoEditor : Editor
         animacaoComponente = serializedObject.FindProperty("animacaoComponente");
         nomeAnimacao = serializedObject.FindProperty("nomeAnimacao");
         esperarQueAnimacaoTermine = serializedObject.FindProperty("esperarQueAnimacaoTermine");
+        loop = serializedObject.FindProperty("loop");
         listaAnimacao = new List<string>();
 
         if (animacaoComponente.objectReferenceValue != null)
@@ -62,13 +64,22 @@ public class TocarAnimacaoAcaoEditor : Editor
                 animacaoIndex = EditorGUILayout.Popup(animacaoIndex, listaAnimacao.ToArray());
             }
 
-            esperarQueAnimacaoTermine.boolValue = EditorGUILayout.Toggle("Esperar que animacao termine: ",esperarQueAnimacaoTermine.boolValue);
+            if (!loop.boolValue)
+            {
+                esperarQueAnimacaoTermine.boolValue = EditorGUILayout.Toggle("Esperar que animacao termine: ", esperarQueAnimacaoTermine.boolValue);
+            }
+
+            loop.boolValue = EditorGUILayout.Toggle("Fazer Loop: ",loop.boolValue);
         }
 
         if (EditorGUI.EndChangeCheck())
         {
             nomeAnimacao.stringValue = listaAnimacao[animacaoIndex];
 
+            if (loop.boolValue)
+            {
+                esperarQueAnimacaoTermine.boolValue = false;
+            }
 
             serializedObject.ApplyModifiedProperties();
             serializedObject.Update();
