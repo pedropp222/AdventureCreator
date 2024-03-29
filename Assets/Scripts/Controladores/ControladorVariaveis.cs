@@ -24,4 +24,3 @@ public enum TipoVariavel
     BOOLEANO,
     TEXTO
 }
-
