@@ -87,6 +87,7 @@ public class CuboFrameEditor : Editor
                 hotspot = hotspotEdit.AddComponent<Hotspot>();
             }
 
+            hotspot.origem = este;
             RefreshHotspotNome();
         }
     }
@@ -128,6 +129,7 @@ public class CuboFrameEditor : Editor
                 estadoAtual = EstadoAtual.CRIAR_HOTSPOT;
                 tipoHotspot = TipoHotspot.IR_OUTRO_FRAME;
                 hotspot = hotspotEdit.AddComponent<HotspotMudarFrame>();
+                hotspot.origem = este;
                 RefreshHotspotNome();
             }
 

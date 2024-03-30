@@ -7,10 +7,23 @@ public class AcaoAtivarHotspot : JogoAcao
 {
     public Hotspot hotspot;
 
+    public bool todos;
+    public bool este;
+
     public override void Avaliar()
     {
-
-        hotspot.SetAtivado(true);
+        if (este)
+        {
+            GetComponent<Hotspot>().SetAtivado(true);
+        }
+        else if (todos)
+        {
+            GetComponent<Hotspot>().origem.listaHotspots.ForEach(i => { i.SetAtivado(true); });
+        }
+        else
+        {
+            hotspot.SetAtivado(true);
+        }
         sucesso = true;
         terminou = true;
     }

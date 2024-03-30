@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 
@@ -80,6 +79,7 @@ public class FramesJogoControladorEditor : Editor
                             hot.transform.localPosition = Vector3.zero;
 
                             HotspotMudarFrame hf = hot.AddComponent<HotspotMudarFrame>();
+                            hf.origem = go.GetComponent<CuboFrame>();
 
                             if (este.listaCubos.Count > 1)
                             {

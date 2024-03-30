@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEditor;
+﻿using System.Collections;
 using UnityEngine;
 
 public class HotspotMudarFrame : Hotspot
 {
     public CuboFrame destino;
-    public CuboFrame origem;
 
     private void OnDrawGizmos()
     {

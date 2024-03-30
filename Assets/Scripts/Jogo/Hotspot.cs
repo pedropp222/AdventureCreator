@@ -8,6 +8,9 @@ public class Hotspot : MonoBehaviour
     [SerializeField]
     protected bool ativado = true;
 
+    [HideInInspector]
+    public CuboFrame origem;
+
     public bool customStringMouseEnter;
     public string cursorValor;
 

@@ -19,11 +19,6 @@ public class CuboFrame : MonoBehaviour
     public void AdicionarHotspot(Hotspot hotspot)
     {
         listaHotspots.Add(hotspot);
-
-        if (hotspot is HotspotMudarFrame frame)
-        {
-            frame.origem = this;
-        }
     }
 
     public void RemoverHotspot(Hotspot hotspot)
