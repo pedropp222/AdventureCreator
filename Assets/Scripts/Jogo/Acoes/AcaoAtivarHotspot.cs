@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [AcaoAtributo("Hotspot/Ativar Hotspot")]
@@ -14,11 +12,26 @@ public class AcaoAtivarHotspot : JogoAcao
     {
         if (este)
         {
-            GetComponent<Hotspot>().SetAtivado(true);
+            if (GetComponent<Hotspot>()!=null)
+            {
+                GetComponent<Hotspot>().SetAtivado(true);
+            }
+            else
+            {
+                Debug.LogWarning("A acao AtivarHotspot com opcao 'este' nao pode ser usada numa frame, mas sim num Hotspot");
+            }
         }
         else if (todos)
         {
-            GetComponent<Hotspot>().origem.listaHotspots.ForEach(i => { i.SetAtivado(true); });
+            //mesma logica tem que ser aplicada caso a acao seja executada num hotspot ou numa frame
+            if (GetComponent<Hotspot>() != null)
+            {
+                GetComponent<Hotspot>().origem.listaHotspots.ForEach(i => { i.SetAtivado(true); });
+            }
+            else
+            {
+                GetComponent<CuboFrame>().listaHotspots.ForEach(i => { i.SetAtivado(true); });
+            }
         }
         else
         {
