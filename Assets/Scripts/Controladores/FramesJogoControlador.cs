@@ -15,6 +15,8 @@ public class FramesJogoControlador : MonoBehaviour
 
     bool aMover = false;
 
+    public CuboFrame frameInicial;
+
     private void Start()
     {
         if (camaraControlador == null)
@@ -23,12 +25,19 @@ public class FramesJogoControlador : MonoBehaviour
         }
 
         if (listaCubos.Count > 0)
-        {
-            IrPara(listaCubos[0], true);
-
-            for (int i = 1; i < listaCubos.Count; i++)
+        {         
+            for (int i = 0; i < listaCubos.Count; i++)
             {
                 listaCubos[i].gameObject.SetActive(false);
+            }
+
+            if (frameInicial != null)
+            {
+                IrPara(frameInicial, true);
+            }
+            else
+            {
+                IrPara(listaCubos[0], true);
             }
         }
         else
