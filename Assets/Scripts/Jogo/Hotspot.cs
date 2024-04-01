@@ -11,8 +11,8 @@ public class Hotspot : MonoBehaviour
     [HideInInspector]
     public CuboFrame origem;
 
-    public bool customStringMouseEnter;
-    public string cursorValor;
+    public bool usarCursorCustom;
+    public int cursorId;
 
     protected bool aExecutar;
 
@@ -79,9 +79,9 @@ public class Hotspot : MonoBehaviour
     {
         if (ativado)
         {
-            if (customStringMouseEnter)
+            if (usarCursorCustom)
             {
-                CursorControlador.instancia.CursorInteragirCustom(cursorValor);
+                CursorControlador.instancia.CursorInteragirCustom(cursorId);
             }
             else
             {

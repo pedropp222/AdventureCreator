@@ -1,35 +1,89 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CursorControlador : MonoBehaviour
 {
-    [SerializeField] private string cursorNormal;
-    [SerializeField] private string cursorInteragir;
+    [SerializeField] private Cursor cursorNormal;
+    [SerializeField] private Cursor cursorInteragir;
 
-    [SerializeField] private Text textoCursor;
+    [SerializeField] private Text textoCursorCanvas;
+    [SerializeField] private Image imagemCursorCanvas;
+
+    [SerializeField] private TipoCursor tipoCursor;
+
+    [SerializeField] public List<Cursor> cursoresExtra = new List<Cursor>();
 
     public static CursorControlador instancia;
 
     private void Awake()
     {
         instancia = this;
+        SetTipoCursor(tipoCursor);
         CursorNormal();
     }
 
     public void CursorInteragir()
     {
-        textoCursor.text = cursorInteragir;
+        ApresentarCursor(cursorInteragir);
     }
 
-    public void CursorInteragirCustom(string valor)
+    public void CursorInteragirCustom(int id)
     {
-        textoCursor.text = valor;
+        if (id < 0 || id >= cursoresExtra.Count)
+        {
+            Debug.LogError("ERRO: Tentou colocar um cursor que nao existe: " + id);
+        }
+        else
+        {
+            ApresentarCursor(cursoresExtra[id]);
+        }
     }
 
     public void CursorNormal()
     {
-        textoCursor.text = cursorNormal;
+        ApresentarCursor(cursorNormal);
     }
+
+    public void SetTipoCursor(TipoCursor tipo)
+    {
+        tipoCursor = tipo;
+
+        if (tipoCursor == TipoCursor.TEXTO)
+        {
+            imagemCursorCanvas.enabled = false;
+            textoCursorCanvas.enabled = true;
+        }
+        else
+        {
+            textoCursorCanvas.enabled = false;
+            imagemCursorCanvas.enabled = true;
+        }
+    }
+
+    private void ApresentarCursor(Cursor cursor)
+    {
+        if (tipoCursor == TipoCursor.TEXTO)
+        {
+            textoCursorCanvas.text = cursor.valorTexto;
+        }
+        else
+        {
+            imagemCursorCanvas.sprite = cursor.valorImagem;
+        }
+    }
+
+    public enum TipoCursor
+    {
+        TEXTO,
+        IMAGENS
+    }
+}
+
+[System.Serializable]
+public class Cursor
+{
+    public string nome;
+    public string valorTexto;
+    public Sprite valorImagem;
 }
