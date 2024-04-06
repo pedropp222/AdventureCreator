@@ -234,7 +234,14 @@ public class CuboFrameEditor : Editor
             }
             else
             {
-                hotspotEdit.name = "Hotspot_IR_FRAME_" + ((HotspotMudarFrame)hotspot).destino != null ? ((HotspotMudarFrame)hotspot).destino.name : "";
+                if ((HotspotMudarFrame)hotspot != null && ((HotspotMudarFrame)hotspot).destino != null)
+                {
+                    hotspotEdit.name = "Hotspot_IR_FRAME_" + ((HotspotMudarFrame)hotspot).destino.name;
+                }
+                else
+                {
+                    hotspotEdit.name = "Hotspot_Novo";
+                }
             }
         }
 
